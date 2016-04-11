@@ -1,22 +1,15 @@
 package fr.duchess.service
 
-import java.util
-import java.util.Date
-
-import com.datastax.spark.connector.{CassandraRow, SparkContextFunctions}
+import com.datastax.spark.connector.CassandraRow
 import com.datastax.spark.connector.rdd.CassandraRDD
-import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
-import org.apache.spark.mllib.linalg.Vector
-import org.apache.spark.mllib.tree.model.RandomForestModel
-import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.storage.StorageLevel
-import com.datastax.spark.connector._
+import org.apache.spark.streaming.receiver.Receiver
 
 
 object CassandraReceiver {
 
-  class CassandraReceiver(val storage:StorageLevel, val cassandraRowsRDD:CassandraRDD[CassandraRow]) extends Receiver[RDD[CassandraRow]](storage:StorageLevel) {
+  class CassandraReceiver(storage:StorageLevel, cassandraRowsRDD:CassandraRDD[CassandraRow]) extends Receiver[RDD[CassandraRow]](storage:StorageLevel) {
 
     val RANDOM_FOREST_PREDICTION_MODEL: String = "predictionModel/RandomForest/training_acceleration_3"
     val ACCELERATION_TOTAL: Long = 100l

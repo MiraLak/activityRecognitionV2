@@ -4,7 +4,7 @@ import com.datastax.spark.connector.CassandraRow
 import org.apache.spark.rdd.RDD
 import com.datastax.spark.connector.rdd.CassandraRDD
 import fr.duchess.ActivityType
-import fr.duchess.model.TimeWindow.TimeWindow;
+import fr.duchess.model.TimeWindow
 
 
 object CassandraQueriesUtils {
