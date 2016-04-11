@@ -1,5 +1,5 @@
 package fr.duchess.model
 
-object PredictionResult {
-  case class PredictionResult(val user_id:String, val timestamp:Long, val prediction:String)
-}
+
+  case class PredictionResult(user_id:String, timestamp:Long, prediction:String)
+
