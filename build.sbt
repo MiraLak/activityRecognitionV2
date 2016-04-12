@@ -2,15 +2,16 @@ name := "Activity Recognition V2"
 
 version := "1.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.1O.5-local"
+scalaHome := Some(file("/home/lakhal/Logiciels/scala-2.10.5"))
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" % "spark-core_2.11" % "1.6.1",
-  "org.apache.spark" % "spark-mllib_2.11" % "1.6.1",
-  "org.apache.spark" % "spark-streaming_2.11" % "1.6.1",
-  "com.datastax.spark" % "spark-cassandra-connector_2.11" % "1.5.0"
+  "org.apache.spark" % "spark-core_2.10" % "1.4.0",
+  "org.apache.spark" % "spark-mllib_2.10" % "1.4.0",
+  "org.apache.spark" % "spark-streaming_2.10" % "1.4.0",
+  "com.datastax.spark" % "spark-cassandra-connector_2.10" % "1.4.0"
 )
 
 resolvers ++= Seq(
