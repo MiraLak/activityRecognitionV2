@@ -8,15 +8,19 @@ import org.apache.spark.mllib.tree.model.{DecisionTreeModel, RandomForestModel}
 import org.apache.spark.rdd.RDD
 
 object FeaturesService {
+
   def computeFeatures(data: RDD[CassandraRow]): Vector = {
     var features: Array[Double] = new Array[Double](15)
     if (data.count > 0) {
+
       val accelerationData: RDD[Array[Double]] = data.map(row => row.toMap)
-        .map(row => Array(row.get("x").asInstanceOf[Double],row.get("y").asInstanceOf[Double],row.get("z").asInstanceOf[Double]))
+        .map(row => Array(row.getOrElse("x",0).asInstanceOf[java.lang.Double],row.getOrElse("y",0).asInstanceOf[java.lang.Double],row.getOrElse("z",0).asInstanceOf[java.lang.Double]))
+        .map(row => row.map(_.doubleValue()))
+
       val vectorsXYZ: RDD[Vector] = accelerationData.map(Vectors.dense)
 
       val timestampAndY: RDD[Array[Long]] = data.map(row => row.toMap)
-        .map(row => Array(row.get("timestamp").asInstanceOf[Long],row.get("y").asInstanceOf[Long]))
+        .map(row => Array(row.getOrElse("timestamp",0).asInstanceOf[java.lang.Long].longValue(),row.getOrElse("y",0).asInstanceOf[java.lang.Double].longValue()))
 
       val feature: FeaturesUtils = new FeaturesUtils(vectorsXYZ)
       val mean: Array[Double] = feature.computeMean

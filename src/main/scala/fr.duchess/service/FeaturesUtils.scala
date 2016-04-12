@@ -78,7 +78,7 @@ object FeaturesUtils {
         val product: RDD[Vector] = firstRDD.zip(secondRDD).map(pair => pair._1 - pair._2).filter(value => value > 0).map(line => Vectors.dense(line))
         return Statistics.colStats(product).mean.toArray(0)
       }
-      return 0.0
+      0.0
     }
   }
 
