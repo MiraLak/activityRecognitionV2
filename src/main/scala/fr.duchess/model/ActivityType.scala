@@ -35,9 +35,9 @@ object ActivityType {
 
   def fromPrediction(num: Int): String = {
     if (num == WALKING.order) WALKING.name
-    if (num == JOGGING.order) JOGGING.name
-    if (num == STANDING.order) STANDING.name
-    if (num == SITTING.order) SITTING.name
+    else if (num == JOGGING.order) JOGGING.name
+    else if (num == STANDING.order) STANDING.name
+    else if (num == SITTING.order) SITTING.name
     else "!!ERROR!! Activity not defined"
   }
 }

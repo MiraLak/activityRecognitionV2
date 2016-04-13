@@ -4,7 +4,7 @@ import com.datastax.spark.connector.CassandraRow
 import fr.duchess.ActivityType
 import fr.duchess.service.FeaturesUtils.FeaturesUtils
 import org.apache.spark.mllib.linalg.{Vector, Vectors}
-import org.apache.spark.mllib.tree.model.{DecisionTreeModel, RandomForestModel}
+import org.apache.spark.mllib.tree.model.RandomForestModel
 import org.apache.spark.rdd.RDD
 
 object FeaturesService {
@@ -33,11 +33,6 @@ object FeaturesService {
       features = Array[Double](mean(0), mean(1), mean(2), variance(0), variance(1), variance(2), standardDeviation(0), standardDeviation(1), standardDeviation(2), avgAbsDiff(0), avgAbsDiff(1), avgAbsDiff(2), resultant, avgTimePeak, difference)
     }
     Vectors.dense(features)
-  }
-
-  def predict(model: DecisionTreeModel, feature: Vector): String = {
-    val prediction: Double = model.predict(feature)
-    ActivityType.fromPrediction(prediction.toInt)
   }
 
   def predict(model: RandomForestModel, feature: Vector): String = {
