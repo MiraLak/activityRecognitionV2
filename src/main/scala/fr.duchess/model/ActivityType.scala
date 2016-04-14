@@ -1,14 +1,8 @@
-package fr.duchess
+package fr.duchess.model
 
 sealed trait ActivityType {
   def order: Int
-
   def name: String
-
-  def fromPrediction(num: Int): String = {
-    if (num == order) name else "!!ERROR!! Activity not defined"
-  }
-
 }
 
 case object WALKING extends ActivityType {
@@ -33,13 +27,15 @@ case object SITTING extends ActivityType {
 
 object ActivityType {
 
-  def fromPrediction(num: Int): String = {
-    if (num == WALKING.order) WALKING.name
-    else if (num == JOGGING.order) JOGGING.name
-    else if (num == STANDING.order) STANDING.name
-    else if (num == SITTING.order) SITTING.name
-    else "!!ERROR!! Activity not defined"
+  def fromPrediction(num: Int): String = num match {
+    case WALKING.order => WALKING.name
+    case JOGGING.order => JOGGING.name
+    case STANDING.order => STANDING.name
+    case SITTING.order => SITTING.name
+    case _ => "!!ERROR!! Activity not defined"
   }
+
+
 }
 
 

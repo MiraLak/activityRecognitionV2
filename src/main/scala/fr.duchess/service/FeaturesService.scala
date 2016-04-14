@@ -1,8 +1,7 @@
 package fr.duchess.service
 
 import com.datastax.spark.connector.CassandraRow
-import fr.duchess.ActivityType
-import fr.duchess.service.FeaturesUtils.FeaturesUtils
+import fr.duchess.model.ActivityType
 import org.apache.spark.mllib.linalg.{Vector, Vectors}
 import org.apache.spark.mllib.tree.model.RandomForestModel
 import org.apache.spark.rdd.RDD
@@ -11,6 +10,7 @@ object FeaturesService {
 
   def computeFeatures(data: RDD[CassandraRow]): Vector = {
     var features: Array[Double] = new Array[Double](15)
+
     if (data.count > 0) {
 
       val accelerationData: RDD[Array[Double]] = data.map(row => row.toMap)

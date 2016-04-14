@@ -3,7 +3,7 @@ package fr.duchess.service
 import com.datastax.spark.connector.CassandraRow
 import org.apache.spark.rdd.RDD
 import com.datastax.spark.connector.rdd.CassandraRDD
-import fr.duchess.ActivityType
+import fr.duchess.model.ActivityType
 import fr.duchess.model.TimeWindow
 
 
