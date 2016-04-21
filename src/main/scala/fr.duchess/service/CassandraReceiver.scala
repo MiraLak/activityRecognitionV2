@@ -10,10 +10,8 @@ import org.apache.spark.{Logging, SparkContext}
 
 class CassandraReceiver(storage: StorageLevel) extends Receiver[RDD[CassandraRow]](storage: StorageLevel) with Logging{
 
-  val RANDOM_FOREST_PREDICTION_MODEL: String = "predictionModel/RandomForest/training_acceleration_3"
   val ACCELERATION_TOTAL: Long = 100l
   val KEYSPACE: String = "activityrecognition"
-  val RESULT_TABLE: String = "result"
   val TEST_USER: String = "TEST_USER"
   val ACCELERATION_TABLE: String = "acceleration"
 
